@@ -1,14 +1,14 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 
 namespace Leo_2D
 {   
     /// <summary>
-    /// 2D ¾î¦V±²¶bªº±±¨î¨t²Î¡G²¾°Ê¡B¸õÅD»P°Êµe
+    /// 2D æ©«å‘æ²è»¸çš„æ§åˆ¶ç³»çµ±ï¼šç§»å‹•ã€è·³èºèˆ‡å‹•ç•«
     /// </summary>
     public class ControlSystem : MonoBehaviour
     {
-        [SerializeField, Header("²¾°Ê³t«×"), Range(0, 500)]
+        [SerializeField, Header("ç§»å‹•é€Ÿåº¦"), Range(0, 500)]
         private float movespeed = 3.5f;
 
         private Rigidbody2D rig;
@@ -16,15 +16,15 @@ namespace Leo_2D
         private void Awake()
         {
             rig = GetComponent<Rigidbody2D>();
-            print("<color=yellow>³ê¿ô¨Æ¥ó</color>");
+            print("<color=yellow>å–šé†’äº‹ä»¶</color>");
         }
         private void Start()
         {
-            print("<color=green>¶}©l¨Æ¥ó</color>");
+            print("<color=green>é–‹å§‹äº‹ä»¶</color>");
         }
         private void Update()
         {
-            //print("<color=red>§ó·s¨Æ¥ó</color>");
+            //print("<color=red>æ›´æ–°äº‹ä»¶</color>");
             float v = Input.GetAxis("Vertical");
             float h = Input.GetAxis("Horizontal");
             float j = Input.GetAxis("Jump");
