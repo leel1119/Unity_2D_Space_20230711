@@ -8,6 +8,8 @@ namespace Leo_2D
     /// </summary>
     public class ControlSystem : MonoBehaviour
     {
+
+        #region 資料
         [SerializeField, Header("移動速度"), Range(0, 500)]
         private float movespeed = 3.5f;
         [SerializeField, Header("檢查地板尺寸")]
@@ -22,18 +24,21 @@ namespace Leo_2D
         private Rigidbody2D rig;
         private Animator ani;
         private string parRun = "開關跑步";
+        private string parJump = "開關跳躍";
+        #endregion
+
+        #region 事件
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = new Color(1f,0f,0.3f,0.5f);
+            Gizmos.color = new Color(1f, 0f, 0.3f, 0.5f);
             Gizmos.DrawCube(transform.position + v3CheckGroundOffset, v3CheckGroundSize);
-            
-        }
 
+        }
         private void Awake()
         {
             rig = GetComponent<Rigidbody2D>();
-           // print("<color=yellow>喚醒事件</color>");
+            // print("<color=yellow>喚醒事件</color>");
             ani = GetComponent<Animator>();
         }
         private void Start()
@@ -45,8 +50,10 @@ namespace Leo_2D
             MoveAndFlip();
             //CheckGround();
             Jump();
-        }
+        } 
+        #endregion
 
+        #region 方法
         private void MoveAndFlip()
         {
             //print("<color=red>更新事件</color>");
@@ -60,12 +67,12 @@ namespace Leo_2D
             /// <summary>
             /// float v = Input.GetAxis("Vertical")
             /// </summary>
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 //print("按下A");
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
-            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 //print("按下D");
                 transform.eulerAngles = Vector3.zero;
@@ -77,21 +84,28 @@ namespace Leo_2D
 
             ani.SetBool(parRun, h != 0);
         }
-
+        /// <summary>
+        /// 判定是否在地面並按空白鍵跳躍
+        /// </summary>
         private void Jump()
         {
             if (CheckGround() && Input.GetKeyDown(KeyCode.Space))
             {
                 rig.AddForce(new Vector2(0, jumpPower));
-                print("001");
             }
         }
+        /// <summary>
+        /// 檢查角色是否在地板
+        /// </summary>
+        /// <returns>是否在地版上</returns>
         private bool CheckGround()
         {
             Collider2D hit = Physics2D.OverlapBox(transform.position + v3CheckGroundOffset, v3CheckGroundSize, 0, lyaerCheckGround);
-            print($"<color=#69f>碰到的物件{hit.name}</color>");
+            //print($"<color=#69f>碰到的物件{hit.name}</color>");
+            ani.SetBool(parJump, !hit);
             return hit;
-        }
+        } 
+        #endregion
     }
 
 }
