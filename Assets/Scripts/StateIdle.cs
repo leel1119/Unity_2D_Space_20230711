@@ -17,15 +17,15 @@ namespace Leo.TwoD
         private float timeIdle;
         private float timer;
 
-        private void Awake()
+        private void Start()
         {
             timeIdle = Random.Range(rangeIdleTime.x, rangeIdleTime.y);
-            print($"<color=#d6f>隨機等待時間</color>");
+            //print($"<color=#d6f>隨機等待時間</color>");
         }
         public override State RunCurrentState()
         {
             timer += Time.deltaTime;
-            print($"<color=#69f>計時器：{timer}</color>");
+            //print($"<color=#69f>計時器：{timer}</color>");
 
             if (timer >= timeIdle) startWander = true;
 
