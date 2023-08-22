@@ -16,11 +16,11 @@ namespace Leo.TwoD
         [SerializeField, Header("移動速度"), Range(0, 5)]
         private float speed = 2f;
         [SerializeField, Header("等待狀態")]
-        private StateWander stateIdle;
+        private StateIdle stateIdle;
         [SerializeField, Header("是否開始等待")]
         private bool startIdle;
         [SerializeField, Header("等待狀態的隨機時間範圍")]
-        private Vector2 rangeIdleTime = new Vector2(0, 10);
+        private Vector2 rangeWanderTime = new Vector2(0, 10);
 
         private float timeWander;
         private float timer;
@@ -45,7 +45,7 @@ namespace Leo.TwoD
         private void Start()
         {
             rig = GetComponent<Rigidbody2D>();
-            timeWander = Random.Range(rangeIdleTime.x, rangeIdleTime.y);
+            timeWander = Random.Range(rangeWanderTime.x, rangeWanderTime.y);
         }
 
         public override State RunCurrentState()

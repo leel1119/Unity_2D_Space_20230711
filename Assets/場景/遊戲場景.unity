@@ -7320,9 +7320,9 @@ MonoBehaviour:
   offsetLeft: -3.5
   offsetRight: 3.5
   speed: 2
-  stateIdle: {fileID: 0}
+  stateIdle: {fileID: 1138703710}
   startIdle: 0
-  rangeIdleTime: {x: 0, y: 10}
+  rangeWanderTime: {x: 0, y: 10}
 --- !u!114 &1138703709
 MonoBehaviour:
   m_ObjectHideFlags: 0
