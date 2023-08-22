@@ -403,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327767827}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5463433, y: 0.64247054, z: -10}
+  m_LocalPosition: {x: 3.54641, y: 0.6424691, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6607,7 +6607,7 @@ GameObject:
   - component: {fileID: 900963531}
   - component: {fileID: 900963532}
   - component: {fileID: 900963533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u592A\u7A7A\u54E1"
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7291,7 +7291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f4a5bda3801fc469f58d7d6b00f1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateDefault: {fileID: 1138703710}
+  stateDefault: {fileID: 1138703708}
 --- !u!114 &1138703707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7304,6 +7304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448cf4ceaef0aee41b27fa2bb40f71eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <layerTarget>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1138703708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7316,13 +7319,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c0ebde4f1d5034482e0c0b9bb6d870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <layerTarget>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 128
   pointOriginal: {x: 13.03, y: -1.65, z: 0}
   offsetLeft: -3.5
   offsetRight: 3.5
-  speed: 2
+  speed: 1.5
   stateIdle: {fileID: 1138703710}
   startIdle: 0
   rangeWanderTime: {x: 0, y: 10}
+  trackSize: {x: 4.57, y: 2.66, z: 1}
+  trackOffset: {x: 1.63, y: 0, z: 0}
+  stateTrack: {fileID: 1138703709}
+  direction: 1
 --- !u!114 &1138703709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7335,6 +7345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9555d6b6e8c2924eba9520a190f1a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <layerTarget>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 3.5
+  stateWander: {fileID: 1138703708}
 --- !u!114 &1138703710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7347,9 +7362,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771307dd02c57e84da1cb57a9ec70052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <layerTarget>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
   stateWander: {fileID: 1138703708}
   startWander: 0
   rangeIdleTime: {x: 0, y: 3}
+  stateTrack: {fileID: 1138703709}
 --- !u!114 &1138703711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7362,6 +7381,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4859c36eb8876844864a1bef481f6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <layerTarget>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1301065337
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -22,10 +22,20 @@ namespace Leo.TwoD
         [SerializeField, Header("等待狀態的隨機時間範圍")]
         private Vector2 rangeWanderTime = new Vector2(0, 10);
 
+        [Header("追蹤區域資料")]
+        [SerializeField]
+        private Vector3 trackSize = Vector3.one;
+        [SerializeField]
+        private Vector3 trackOffset;
+
+        [SerializeField, Header("追蹤狀態")]
+        private StateTrack stateTrack;
+
+
         private float timeWander;
         private float timer;
 
-        private int direction = 1;
+        public int direction = 1;
 
         private Vector3 pointLeft => pointOriginal + Vector3.right * offsetLeft;
         private Vector3 pointRight => pointOriginal + Vector3.right * offsetRight;
@@ -40,6 +50,8 @@ namespace Leo.TwoD
             Gizmos.DrawSphere(pointLeft, 0.1f);
             Gizmos.DrawSphere(pointRight, 0.1f);
 
+            Gizmos.color = new Color(1, 0.8f, 0.1f, 0.5f);
+            Gizmos.DrawCube(transform.position + transform.TransformDirection(trackOffset), trackSize);
         }
 
         private void Start()
@@ -50,8 +62,61 @@ namespace Leo.TwoD
 
         public override State RunCurrentState()
         {
+            MoveAndFlip();
+            TrackTarget();
+
+            timer += Time.deltaTime;
+            //print($"<color=#69f>計時器：{timer}</color>");
+
+            if (timer >= timeWander) startIdle = true;
+
+            if (TrackTarget())
+            {
+                ResetState();
+                return stateTrack;
+            }
+            else if (startIdle)
+            {
+                ResetState();
+                return stateIdle;
+            }
+            else
+            {
+                return this;
+            }
+
+            ///重設狀態資料
+
+        }
+        /// <summary>
+        /// 目標追蹤物件
+        /// </summary>
+        /// <returns></returns>
+        public bool TrackTarget()
+        {
+            Collider2D hit = Physics2D.OverlapBox(transform.position + transform.TransformDirection(trackOffset), trackSize, 0, layerTarget);
+            //print(hit.name);
+            return hit;
+        }
+        /// <summary>
+        /// 重設狀態資料
+        /// </summary>
+        private void ResetState()
+        {
+            timer = 0;
+            startIdle = false;
+            timeWander = Random.Range(rangeWanderTime.x, rangeWanderTime.y);
+            rig.velocity = Vector3.zero;
+            ani.SetBool(parWalk, false);
+        }
+
+        /// <summary>
+        /// 移動與翻面
+        /// </summary>
+        private void MoveAndFlip()
+        {
             if (Vector3.Distance(transform.position, pointRight) < 0.5f)
-            { 
+            {
                 direction = -1;
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
@@ -62,20 +127,6 @@ namespace Leo.TwoD
             }
             rig.velocity = new Vector2(direction * speed, rig.velocity.y);
             ani.SetBool(parWalk, true);
-
-            timer += Time.deltaTime;
-            //print($"<color=#69f>計時器：{timer}</color>");
-
-            if (timer >= timeWander) startIdle = true;
-
-            if (startIdle)
-            {
-                return stateIdle;
-            }
-            else
-            {
-                return this;
-            }
         }
 
         [ContextMenu("取得角色原始座標")]
