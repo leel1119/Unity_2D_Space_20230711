@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Properties;
+using UnityEngine;
 
 namespace Leo.TwoD
 {
@@ -7,8 +8,25 @@ namespace Leo.TwoD
     /// </summary>
     public class StateAttack : State
     {
+        [SerializeField, Header("送出攻擊檢測的時間點"), Range(0, 5)]
+        private float timeSendAttackCheck = 0.3f;
+        [SerializeField, Header("攻擊結束的時間點"), Range(0, 5)]
+        private float timeAttackEnd = 0.5f;
+
+
+        private string parAttack = "觸發攻擊";
+        private float timer;
         public override State RunCurrentState()
         {
+            if (timer == 0)
+            {
+                ani.SetTrigger(parAttack);
+            }
+            else
+            { 
+            
+            }
+            timer = +Time.deltaTime;
             return this;
         }
     }

@@ -7226,7 +7226,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1138703700}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d374f9184534fb04aa61d3ae1f178908, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7347,9 +7347,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <layerTarget>k__BackingField:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   speed: 3.5
   stateWander: {fileID: 1138703708}
+  attackSize: {x: 2.15, y: 2.67, z: 1}
+  attackoffset: {x: 0.55, y: 0, z: 0}
+  stateAttack: {fileID: 1138703707}
 --- !u!114 &1138703710
 MonoBehaviour:
   m_ObjectHideFlags: 0

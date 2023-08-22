@@ -96,7 +96,9 @@ namespace Leo.TwoD
         {
             Collider2D hit = Physics2D.OverlapBox(transform.position + transform.TransformDirection(trackOffset), trackSize, 0, layerTarget);
             //print(hit.name);
-            return hit;
+            if (!hit) return false;
+            if (hit.transform.position.x > pointLeft.x && hit.transform.position.x < pointRight.x) return hit;
+            return false;
         }
         /// <summary>
         /// 重設狀態資料
