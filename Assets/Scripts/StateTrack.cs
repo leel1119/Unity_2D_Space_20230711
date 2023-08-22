@@ -66,7 +66,7 @@ namespace Leo.TwoD
             ani.speed = 1f;
             rig.velocity = Vector3.zero;
         }
-        private bool AttackTarget()
+        public bool AttackTarget()
         {
             Collider2D hit = Physics2D.OverlapBox(transform.position + transform.TransformDirection(attackoffset), attackSize, 0, layerTarget);
             return hit;

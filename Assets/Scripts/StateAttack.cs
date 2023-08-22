@@ -12,10 +12,13 @@ namespace Leo.TwoD
         private float timeSendAttackCheck = 0.3f;
         [SerializeField, Header("攻擊結束的時間點"), Range(0, 5)]
         private float timeAttackEnd = 0.5f;
+        [SerializeField, Header("追蹤狀態")]
+        private StateTrack stateTrack;
 
-
+        
         private string parAttack = "觸發攻擊";
         private float timer;
+        private bool canSendAttack = true;
         public override State RunCurrentState()
         {
             if (timer == 0)
@@ -23,10 +26,24 @@ namespace Leo.TwoD
                 ani.SetTrigger(parAttack);
             }
             else
-            { 
+            {
+                if (timer >= timeSendAttackCheck && canSendAttack)
+                {
+                    canSendAttack = false;
+                    if (stateTrack.AttackTarget())
+                    {
+                        print("<color=#69f>擊中玩家!</color>");
+                    }
+                }
+                else if (timer >= timeAttackEnd)
+                {
+                    canSendAttack = true;
+                    timer = 0;
+                    return stateTrack;
+                }
             
             }
-            timer = +Time.deltaTime;
+            timer += Time.deltaTime;
             return this;
         }
     }
