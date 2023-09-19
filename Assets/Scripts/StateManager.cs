@@ -9,7 +9,7 @@ namespace Leo.TwoD
     {
 
         [SerializeField, Header("狀態控制管理器")]
-        private State stateDefault;
+        public State stateDefault;
 
         private void Update()
         {
