@@ -1,5 +1,4 @@
-﻿using Unity.Properties;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Leo.TwoD
 {
@@ -19,6 +18,12 @@ namespace Leo.TwoD
         private string parAttack = "觸發攻擊";
         private float timer;
         private bool canSendAttack = true;
+        private DamageSystem damageSystem;
+
+        private void Start()
+        {
+            damageSystem = GameObject.Find("太空員").GetComponent<DamageSystem>();
+        }
         public override State RunCurrentState()
         {
             if (timer == 0)
@@ -33,6 +38,7 @@ namespace Leo.TwoD
                     if (stateTrack.AttackTarget())
                     {
                         print("<color=#69f>擊中玩家!</color>");
+                        damageSystem.Damage(30);
                     }
                 }
                 else if (timer >= timeAttackEnd)

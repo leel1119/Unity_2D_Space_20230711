@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-namespace Leo_2D
+namespace Leo.TwoD
 {   
     /// <summary>
     /// 2D 橫向捲軸的控制系統：移動、跳躍與動畫
