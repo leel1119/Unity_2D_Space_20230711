@@ -14,8 +14,8 @@ namespace Leo.TwoD
         [SerializeField, Header("傷害值文字預製物")]
         private GameObject prefabDamage;
 
-        private float hp;
-        private float hpMax;
+        protected float hp;
+        protected float hpMax;
 
         private void Awake()
         {
@@ -27,7 +27,7 @@ namespace Leo.TwoD
         /// 受傷
         /// </summary>
         /// <param name="getDamage"></param>
-        public void Damage(float getDamage)
+        public virtual void Damage(float getDamage)
         { 
             hp -= getDamage;
             GameObject tempDamage = Instantiate(prefabDamage, transform.position + Vector3.up, Quaternion.identity);
@@ -40,7 +40,7 @@ namespace Leo.TwoD
         /// <summary>
         /// 死亡
         /// </summary>
-        public void Dead() 
+        protected virtual void Dead() 
         { 
         
         }

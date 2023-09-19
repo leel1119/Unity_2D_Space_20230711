@@ -13,8 +13,10 @@ namespace Leo.TwoD
         private float timeAttackEnd = 0.5f;
         [SerializeField, Header("追蹤狀態")]
         private StateTrack stateTrack;
+        [SerializeField, Header("敵人資料")]
+        private DataBasic data;
 
-        
+
         private string parAttack = "觸發攻擊";
         private float timer;
         private bool canSendAttack = true;
@@ -37,8 +39,8 @@ namespace Leo.TwoD
                     canSendAttack = false;
                     if (stateTrack.AttackTarget())
                     {
-                        print("<color=#69f>擊中玩家!</color>");
-                        damageSystem.Damage(30);
+                        //print("<color=#69f>擊中玩家!</color>");
+                        damageSystem.Damage(data.attack);
                     }
                 }
                 else if (timer >= timeAttackEnd)
