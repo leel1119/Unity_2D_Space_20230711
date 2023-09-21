@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Leo.TwoD;
+using Cinemachine;
 
 namespace Leo.TwoD
 
@@ -18,12 +19,15 @@ namespace Leo.TwoD
         private string parDead = "開關死亡";
         private Rigidbody2D rig;
         private Collider2D col;
+        private CinemachineImpulseSource impulseSource;
 
         private void Start()
         {
             ani = GetComponent<Animator>();
             rig = GetComponent<Rigidbody2D>();
             col = GetComponent<Collider2D>();
+
+             impulseSource = FindObjectOfType<CinemachineImpulseSource>();
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -37,6 +41,8 @@ namespace Leo.TwoD
 
                 AudioClip sound = SoundManager.instance.soundEnemyHit;
                 SoundManager.instance.PlayerSound(sound, 0.3f, 0.7f);
+
+                impulseSource.GenerateImpulse();
             }
         }
 

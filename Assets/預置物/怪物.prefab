@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: b646bbea20efa6d47a5384c83cc6fe07, type: 2}
-  prefabDamage: {fileID: 6222948996888506519, guid: 97c7e530befdc034f924d1abd457edb7, type: 3}
+  prefabDamage: {fileID: 2841154112779771767, guid: 97c7e530befdc034f924d1abd457edb7, type: 3}
   stateManager: {fileID: 8755350806854891196}
   stateHit: {fileID: 7462467201753120320}
   prefabItem: {fileID: 7089973963384621267, guid: 08582cb41dfe1034ba4fe7e4eb3a4e4f, type: 3}
