@@ -54,6 +54,10 @@ namespace Leo.TwoD
             timer += Time.deltaTime;
             return this;
         }
+        public void ResetAttackState()
+        {
+            timer = 0;
+        }
     }
 
 }

@@ -40,6 +40,9 @@ namespace Leo.TwoD
                 ani.SetTrigger(parFire);
                 GameObject tempBullet = Instantiate(prefabBullet, pointBullet.position, transform.rotation);
                 tempBullet.GetComponent<Rigidbody2D>().AddForce(-transform.right * powerBullet);
+
+                AudioClip sound = SoundManager.instance.soundFire;
+                SoundManager.instance.PlayerSound(sound, 0.3f, 0.7f);
             }
         }
     }

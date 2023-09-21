@@ -30,12 +30,23 @@ namespace Leo.TwoD
             base.Damage(getDamage);
             imgHp.fillAmount = hp / hpMax;
             StartCoroutine(DamageEffect());
+
+            AudioClip sound = SoundManager.instance.soundPlayerHit;
+            SoundManager.instance.PlayerSound(sound, 0.3f, 0.7f);
         }
 
         protected override void Dead()
         {
             fungusGM.SendFungusMessage("遊戲失敗");
             Destroy(gameObject);
+
+            AudioClip soundlose = SoundManager.instance.soundLose;
+            SoundManager.instance.PlayerSound(soundlose, 1f, 1f);
+
+            AudioClip sound = SoundManager.instance.soundPlayerDead;
+            SoundManager.instance.PlayerSound(sound, 0.3f, 0.7f);
+
+
         }
 
         private IEnumerator DamageEffect()
